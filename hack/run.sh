@@ -34,10 +34,10 @@ kubectl apply -f ./config/capi
 clusterctl get kubeconfig demo > "${KUBECONFIG_DEMO}"
 clusterctl get kubeconfig demo-external > "${KUBECONFIG_DEMO_EXTERNAL}"
 
-# KUBECONFIG="${KUBECONFIG_DEMO}"  helm install cilium cilium/cilium --namespace=kube-system || true
+KUBECONFIG="${KUBECONFIG_DEMO}" kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml
 KUBECONFIG="${KUBECONFIG_DEMO}" kubectl get nodes -A
 KUBECONFIG="${KUBECONFIG_DEMO}" kubectl get all -A
 
-# KUBECONFIG="${KUBECONFIG_DEMO_EXTERNAL}" helm install cilium cilium/cilium --namespace=kube-system || true
+KUBECONFIG="${KUBECONFIG_DEMO_EXTERNAL}" kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml
 KUBECONFIG="${KUBECONFIG_DEMO_EXTERNAL}" kubectl get nodes -A
 KUBECONFIG="${KUBECONFIG_DEMO_EXTERNAL}" kubectl get all -A
